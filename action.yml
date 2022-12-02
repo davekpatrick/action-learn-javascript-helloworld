@@ -1,0 +1,19 @@
+# BOF 
+name: 'Hello World with node.js'
+author: davekpatrick
+description: 'A simple introductory action using node.js'
+#
+inputs:
+  greetingType:  # id of input
+    description: 'Type of greeting to execute'
+    required: false
+    default: 'Hello'
+#
+outputs:
+  greetingMessage: # id of output
+    description: 'The node.js returned greeting'
+## ------------------------------
+runs:
+  using: 'node16'
+  main: './node/main.js'
+# EOF
