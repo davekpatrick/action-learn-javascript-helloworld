@@ -27,6 +27,8 @@ jobs:
         ncc build index.js --license licenses.txt
     - name: create commit
       run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
         git add --force action.yml
         git add --force node/dist/index.js
         git commit --message="Action release"
