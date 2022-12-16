@@ -27,8 +27,8 @@ jobs:
         ncc build index.js --license licenses.txt
     - name: create commit
       run: |
-        git add action.yml
-        git add node/dist/index.js
+        git add --force action.yml
+        git add --force node/dist/index.js
         git commit --message="Action release"
         git tag --annotate --message="Action release" v1
         git push --follow-tags
