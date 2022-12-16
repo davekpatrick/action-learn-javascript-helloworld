@@ -13,3 +13,12 @@ jobs:
       run: |
          git checkout --detach 
          git status
+    - name: Install dependencies
+      run: |
+        cd node
+        npm install
+    - name: Install ncc 
+      run: |
+        cd node
+        npm i -g @vercel/ncc
+
