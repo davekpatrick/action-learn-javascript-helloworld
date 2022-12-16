@@ -1,0 +1,15 @@
+on:
+  push:
+    branches:    
+      - main
+
+jobs:
+  build:
+   runs-on: ubuntu-22.04
+   name: Artifact build
+   steps:
+    - uses: actions/checkout@v3
+    - name: Detach HEAD
+      run: |
+         git checkout --detach 
+         git status

@@ -15,5 +15,5 @@ outputs:
 ## ------------------------------
 runs:
   using: 'node16'
-  main: './node/main.js'
+  main: './node/dist/index.js'
 # EOF

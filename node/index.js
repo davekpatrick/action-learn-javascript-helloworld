@@ -1,6 +1,5 @@
 // BOF
 const core = require('@actions/core');
-const github = require('@actions/github');
 //
 try {
   // Remember that inputs are defined in action metadata file
