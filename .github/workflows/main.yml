@@ -31,6 +31,10 @@ jobs:
         git config user.email github-actions@github.com
         git add --force action.yml
         git add --force node/dist/index.js
+        git status
+        git log -3 --oneline
         git commit --message="Action release"
         git tag --annotate --message="Action release" v1
-        git push origin HEAD:${{ github.event.repository.default_branch }} --follow-tags
+        git status
+        git log -3 --oneline
+        #git push origin HEAD:${{ github.event.repository.default_branch }} --follow-tags
