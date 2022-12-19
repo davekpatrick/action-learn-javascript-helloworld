@@ -32,7 +32,7 @@ jobs:
         git config user.name github-actions
         git config user.email github-actions@github.com
         echo "--------------------------------------------"
-        git rm -r --force *
+        git rm -r --force '*'
         echo "--------------------------------------------"
         git reset -- README.md
         git restore -- README.md
@@ -45,7 +45,7 @@ jobs:
         echo "--------------------------------------------"
         git commit --message="Action release"
         echo "--------------------------------------------"
-        git tag --annotate --message="Action release" v1
+        git tag --force --annotate --message="Action release" v1
         echo "--------------------------------------------"
         git status
         echo "--------------------------------------------"
