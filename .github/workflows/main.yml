@@ -34,9 +34,13 @@ jobs:
         echo "--------------------------------------------"
         git rm -r --force *
         echo "--------------------------------------------"
-        git add --force README.md
-        git add --force LICENSE
-        git add --force action.yml
+        git reset -- README.md
+        git restore -- README.md
+        git reset -- LICENSE
+        git restore -- LICENSE
+        git reset -- action.yml
+        git restore -- action.yml
+        echo "--------------------------------------------"
         git add --force node/dist/index.js
         echo "--------------------------------------------"
         git commit --message="Action release"
