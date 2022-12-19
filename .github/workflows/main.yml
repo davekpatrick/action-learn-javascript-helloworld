@@ -12,7 +12,9 @@ jobs:
     - name: Detach HEAD
       run: |
          git checkout --detach 
+         echo "--------------------------------------------"
          git status
+         echo "--------------------------------------------"
     - name: Install dependencies
       run: |
         cd node
@@ -29,12 +31,20 @@ jobs:
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
+        echo "--------------------------------------------"
+        git rm -r --force *
+        echo "--------------------------------------------"
+        git add --force README.md
+        git add --force LICENSE
         git add --force action.yml
         git add --force node/dist/index.js
-        git status
-        git log -3 --oneline
+        echo "--------------------------------------------"
         git commit --message="Action release"
+        echo "--------------------------------------------"
         git tag --annotate --message="Action release" v1
+        echo "--------------------------------------------"
         git status
+        echo "--------------------------------------------"
         git log -3 --oneline
-        #git push origin HEAD:${{ github.event.repository.default_branch }} --follow-tags
+        echo "--------------------------------------------"
+        git push origin v1
