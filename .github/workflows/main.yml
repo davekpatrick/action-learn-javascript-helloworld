@@ -3,6 +3,9 @@ on:
     branches:    
       - main
 
+env:
+  RELEASE_VERSION: v1
+
 jobs:
   build:
    runs-on: ubuntu-22.04
@@ -45,10 +48,12 @@ jobs:
         echo "--------------------------------------------"
         git commit --message="Action release"
         echo "--------------------------------------------"
-        git tag --force --annotate --message="Action release" v1
+        git push origin :refs/tags/${{ env.RELEASE_VERSION }}
+        echo "--------------------------------------------"
+        git tag --force --annotate --message="Action release" ${{ env.RELEASE_VERSION }}
         echo "--------------------------------------------"
         git status
         echo "--------------------------------------------"
         git log -3 --oneline
         echo "--------------------------------------------"
-        git push origin v1
+        git push origin ${{ env.RELEASE_VERSION }}
