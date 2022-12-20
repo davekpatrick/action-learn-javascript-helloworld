@@ -4,7 +4,7 @@ on:
       - main
 
 env:
-  RELEASE_VERSION: v1
+  RELEASE_VERSION: v1.0.0
 
 jobs:
   build:
