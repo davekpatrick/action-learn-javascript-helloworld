@@ -46,11 +46,11 @@ jobs:
         echo "--------------------------------------------"
         git add --force node/dist/index.js
         echo "--------------------------------------------"
-        git commit --message="Action release ${{ env.RELEASE_VERSION }}"
+        git commit --message="Create action release ${{ env.RELEASE_VERSION }}"
         echo "--------------------------------------------"
         git push origin :refs/tags/${{ env.RELEASE_VERSION }}
         echo "--------------------------------------------"
-        git tag --force --annotate --message="Action release ${{ env.RELEASE_VERSION }}"
+        git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION }}" ${{ env.RELEASE_VERSION }}
         echo "--------------------------------------------"
         git status
         echo "--------------------------------------------"
