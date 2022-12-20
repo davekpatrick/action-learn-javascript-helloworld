@@ -54,16 +54,16 @@ jobs:
         git push origin :refs/tags/${{ env.RELEASE_VERSION }}
         echo "--------------------------------------------"
         git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION }}" ${{ env.RELEASE_VERSION }}
-        git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION }}" ${{ env.RELEASE_VERSION_MAJOR }}
-        git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION }}" ${{ env.RELEASE_VERSION_MINOR }}
+        git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION_MAJOR }}" ${{ env.RELEASE_VERSION_MAJOR }}
+        git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION_MINOR }}" ${{ env.RELEASE_VERSION_MINOR }}
         echo "--------------------------------------------"
         git status
         echo "--------------------------------------------"
         git log -3 --oneline
         echo "--------------------------------------------"
         git push origin ${{ env.RELEASE_VERSION }}
-        git push origin ${{ env.RELEASE_VERSION_MAJOR }}
-        git push origin ${{ env.RELEASE_VERSION_MINOR }}
+        git push --force origin ${{ env.RELEASE_VERSION_MAJOR }}
+        git push --force origin ${{ env.RELEASE_VERSION_MINOR }}
   testing:
     runs-on: ubuntu-latest
     name: Action testing
