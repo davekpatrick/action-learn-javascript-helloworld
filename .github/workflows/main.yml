@@ -60,6 +60,7 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     name: Action testing
+    needs: [ build ]
     steps:
       - name: Run Hello
         id: hello
