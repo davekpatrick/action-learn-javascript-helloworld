@@ -8,6 +8,7 @@ env:
   RELEASE_VERSION_MAJOR: v1
   RELEASE_VERSION_MINOR: v1.4
   RELEASE_VERSION_PATCH: 0
+  RELEASE_VERSION_LATEST: latest
 
 jobs:
   build:
@@ -57,6 +58,7 @@ jobs:
         git tag --annotate --message="Tag action release ${{ env.RELEASE_VERSION }}" ${{ env.RELEASE_VERSION }}
         git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION_MAJOR }}" ${{ env.RELEASE_VERSION_MAJOR }}
         git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION_MINOR }}" ${{ env.RELEASE_VERSION_MINOR }}
+        git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION_MINOR }}" ${{ env.RELEASE_VERSION_LATEST }}
         echo "--------------------------------------------"
         git status
         echo "--------------------------------------------"
@@ -65,6 +67,7 @@ jobs:
         git push origin ${{ env.RELEASE_VERSION }}
         git push --force origin ${{ env.RELEASE_VERSION_MAJOR }}
         git push --force origin ${{ env.RELEASE_VERSION_MINOR }}
+        git push --force origin ${{ env.RELEASE_VERSION_LATEST }}
   testing:
     runs-on: ubuntu-latest
     name: Action testing
@@ -73,7 +76,7 @@ jobs:
       # ---------------------------------------------------
       - name: Run Hello
         id: hello
-        uses: davekpatrick/action-learn-javascript-helloworld@v1
+        uses: davekpatrick/action-learn-javascript-helloworld@latest
         with:
           greetingType: 'Hello'
       # Use the output from the action
@@ -82,7 +85,7 @@ jobs:
       # ---------------------------------------------------
       - name: Run Goodbye
         id: goodbye
-        uses: davekpatrick/action-learn-javascript-helloworld@v1
+        uses: davekpatrick/action-learn-javascript-helloworld@latest
         with:
           greetingType: 'Goodbye'
       # Use the output from the action
