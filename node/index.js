@@ -7,7 +7,8 @@ try {
   const message = `${greetingType}, World!`
   //
   console.log(`${message}`);
-  core.setOutput("greetingMessage", `${message} from node.js land`);
+  // Rember the output is defined in action metadata file
+  core.setOutput("greetingMessage", `Super cool, ${message} from node.js land`);
 } catch (error) {
   // Should any error occur, the action will fail and the workflow will stop
   // Using the actions toolkit (core) pacakge to log a message and set exit code
