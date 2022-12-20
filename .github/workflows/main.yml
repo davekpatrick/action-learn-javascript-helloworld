@@ -5,6 +5,9 @@ on:
 
 env:
   RELEASE_VERSION: v1.2.0
+  RELEASE_VERSION_MAJOR: v1
+  RELEASE_VERSION_MINOR: v1.2
+  RELEASE_VERSION_PATCH: 0
 
 jobs:
   build:
@@ -51,22 +54,36 @@ jobs:
         git push origin :refs/tags/${{ env.RELEASE_VERSION }}
         echo "--------------------------------------------"
         git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION }}" ${{ env.RELEASE_VERSION }}
+        git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION }}" ${{ env.RELEASE_VERSION_MAJOR }}
+        git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION }}" ${{ env.RELEASE_VERSION_MINOR }}
         echo "--------------------------------------------"
         git status
         echo "--------------------------------------------"
         git log -3 --oneline
         echo "--------------------------------------------"
         git push origin ${{ env.RELEASE_VERSION }}
+        git push origin ${{ env.RELEASE_VERSION_MAJOR }}
+        git push origin ${{ env.RELEASE_VERSION_MINOR }}
   testing:
     runs-on: ubuntu-latest
     name: Action testing
     needs: [ build ]
     steps:
+      # ---------------------------------------------------
       - name: Run Hello
         id: hello
-        uses: davekpatrick/action-learn-javascript-helloworld@env.RELEASE_VERSION
+        uses: davekpatrick/action-learn-javascript-helloworld@v1
         with:
           greetingType: 'Hello'
       # Use the output from the action
       - name: Print Results
         run: echo "${{ steps.hello.outputs.greetingMessage }}"
+      # ---------------------------------------------------
+      - name: Run Goodbye
+        id: goodbye
+        uses: davekpatrick/action-learn-javascript-helloworld@v1
+        with:
+          greetingType: 'Goodbye'
+      # Use the output from the action
+      - name: Print Results
+        run: echo "${{ steps.goodbye.outputs.greetingMessage }}"
