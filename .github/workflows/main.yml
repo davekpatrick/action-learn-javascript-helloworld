@@ -4,9 +4,9 @@ on:
       - main
 
 env:
-  RELEASE_VERSION: v1.3.0
+  RELEASE_VERSION: v1.4.0
   RELEASE_VERSION_MAJOR: v1
-  RELEASE_VERSION_MINOR: v1.3
+  RELEASE_VERSION_MINOR: v1.4
   RELEASE_VERSION_PATCH: 0
 
 jobs:
@@ -51,9 +51,10 @@ jobs:
         echo "--------------------------------------------"
         git commit --message="Create action release ${{ env.RELEASE_VERSION }}"
         echo "--------------------------------------------"
+        # ensure we do not have an existing release version tag
         git push origin :refs/tags/${{ env.RELEASE_VERSION }}
         echo "--------------------------------------------"
-        git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION }}" ${{ env.RELEASE_VERSION }}
+        git tag --annotate --message="Tag action release ${{ env.RELEASE_VERSION }}" ${{ env.RELEASE_VERSION }}
         git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION_MAJOR }}" ${{ env.RELEASE_VERSION_MAJOR }}
         git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION_MINOR }}" ${{ env.RELEASE_VERSION_MINOR }}
         echo "--------------------------------------------"

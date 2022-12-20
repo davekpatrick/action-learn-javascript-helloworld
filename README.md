@@ -16,6 +16,8 @@ The super cool greeting
 
 ## Example usage
 
+```yaml
 uses: davekpatrick/action-learn-javascript-helloworld@0.1.0
 with:
   greetingType: 'Hello'
+```
