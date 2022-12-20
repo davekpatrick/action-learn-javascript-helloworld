@@ -4,7 +4,7 @@ on:
       - main
 
 env:
-  RELEASE_VERSION: v1.0.0
+  RELEASE_VERSION: v1.1.0
 
 jobs:
   build:
@@ -46,14 +46,26 @@ jobs:
         echo "--------------------------------------------"
         git add --force node/dist/index.js
         echo "--------------------------------------------"
-        git commit --message="Action release"
+        git commit --message="Action release ${{ env.RELEASE_VERSION }}"
         echo "--------------------------------------------"
         git push origin :refs/tags/${{ env.RELEASE_VERSION }}
         echo "--------------------------------------------"
-        git tag --force --annotate --message="Action release" ${{ env.RELEASE_VERSION }}
+        git tag --force --annotate --message="Action release ${{ env.RELEASE_VERSION }}"
         echo "--------------------------------------------"
         git status
         echo "--------------------------------------------"
         git log -3 --oneline
         echo "--------------------------------------------"
         git push origin ${{ env.RELEASE_VERSION }}
+  testing:
+    runs-on: ubuntu-latest
+    name: Action testing
+    steps:
+      - name: Run Hello
+        id: hello
+        uses: davekpatrick/action-learn-javascript-helloworld@${{ env.RELEASE_VERSION }}"
+        with:
+          greetingType: 'Hello'
+      # Use the output from the action
+      - name: Print Results
+        run: echo "${{ steps.hello.outputs.greetingMessage }}"
