@@ -64,7 +64,7 @@ jobs:
     steps:
       - name: Run Hello
         id: hello
-        uses: "davekpatrick/action-learn-javascript-helloworld@v1.1.0"
+        uses: ${{ github.repository }}@${{ env.RELEASE_VERSION }}
         with:
           greetingType: 'Hello'
       # Use the output from the action
