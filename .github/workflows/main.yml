@@ -4,9 +4,9 @@ on:
       - main
 
 env:
-  RELEASE_VERSION: v1.4.0
+  RELEASE_VERSION: v1.5.0
   RELEASE_VERSION_MAJOR: v1
-  RELEASE_VERSION_MINOR: v1.4
+  RELEASE_VERSION_MINOR: v1.5
   RELEASE_VERSION_PATCH: 0
   RELEASE_VERSION_LATEST: latest
 
@@ -50,15 +50,15 @@ jobs:
         echo "--------------------------------------------"
         git add --force node/dist/index.js
         echo "--------------------------------------------"
-        git commit --message="Create action release ${{ env.RELEASE_VERSION }}"
+        git commit --message="Create release version[${{ env.RELEASE_VERSION }}]"
         echo "--------------------------------------------"
         # ensure we do not have an existing release version tag
         git push origin :refs/tags/${{ env.RELEASE_VERSION }}
         echo "--------------------------------------------"
         git tag --annotate --message="Tag action release ${{ env.RELEASE_VERSION }}" ${{ env.RELEASE_VERSION }}
-        git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION_MAJOR }}" ${{ env.RELEASE_VERSION_MAJOR }}
-        git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION_MINOR }}" ${{ env.RELEASE_VERSION_MINOR }}
-        git tag --force --annotate --message="Tag action release ${{ env.RELEASE_VERSION_MINOR }}" ${{ env.RELEASE_VERSION_LATEST }}
+        git tag --force --annotate --message="Tag action release version ${{ env.RELEASE_VERSION_MAJOR }}" ${{ env.RELEASE_VERSION_MAJOR }}
+        git tag --force --annotate --message="Tag action release version ${{ env.RELEASE_VERSION_MINOR }}" ${{ env.RELEASE_VERSION_MINOR }}
+        git tag --force --annotate --message="Tag action release version ${{ env.RELEASE_VERSION_MINOR }}" ${{ env.RELEASE_VERSION_LATEST }}
         echo "--------------------------------------------"
         git status
         echo "--------------------------------------------"
